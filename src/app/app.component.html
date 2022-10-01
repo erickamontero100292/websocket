@@ -16,6 +16,7 @@
   <h2>Write your message: </h2>
   <form [formGroup]="modelForm">
     <input formControlName="message"  type="text" name="message" id="message">
-    <button type="button" [disabled]="modelForm.invalid"   mat-raised-button color="primary" (click)="send()">Enviar </button>
+    <button type="button" [disabled]="modelForm.invalid"   mat-raised-button color="primary" (click)="send()">Enviar <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="send"></mat-icon>
+    </button>
   </form>
 </div>
