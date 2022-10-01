@@ -15,7 +15,11 @@
 <div>
   <h2>Write your message: </h2>
   <form [formGroup]="modelForm">
-    <input formControlName="message"  type="text" name="message" id="message">
+<!--    <input formControlName="message"  type="text" name="message" id="message">-->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Message</mat-label>
+      <input  formControlName="message" matInput placeholder="Message">
+    </mat-form-field>
     <button type="button" [disabled]="modelForm.invalid"   mat-raised-button color="primary" (click)="send()">Enviar <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="send"></mat-icon>
     </button>
   </form>
