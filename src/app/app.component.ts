@@ -3,7 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {WebsocketService} from "./websocket.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AlertComponent} from "./alert/alert.component";
-import {Subscription} from "rxjs";
+import {Subscription, take} from "rxjs";
 
 export interface IChat {
 
@@ -28,14 +28,14 @@ export class AppComponent implements OnInit, OnDestroy {
     message: ['', [Validators.required]]
   });
 
-  constructor(private _fb: FormBuilder, private websocketService: WebsocketService, private dialog: MatDialog) {
+  constructor(private _fb: FormBuilder, private websocketService: WebsocketService, private dialog: MatDialog, ) {
 
   }
 
 
   send() {
     console.log(this.modelForm.value.message);
-    var sub = this.dialog.open(AlertComponent).afterClosed().subscribe(x => {
+    var sub = this.dialog.open(AlertComponent).afterClosed().pipe(take(1)).subscribe(x => {
 
       if (x) {
         var chat = {} as IChat;
