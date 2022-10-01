@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {WebsocketService} from "./websocket.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AlertComponent} from "./alert/alert.component";
 
 export interface IChat {
 
@@ -23,11 +25,13 @@ export class AppComponent implements OnInit{
   modelForm = this._fb.group({
     message: ['', [Validators.required]]
   });
-  constructor(private _fb: FormBuilder, private websocketService: WebsocketService) {
+  constructor(private _fb: FormBuilder, private websocketService: WebsocketService, private dialog: MatDialog) {
+
   }
 
   send() {
   console.log(this.modelForm.value.message);
+  this.dialog.open(AlertComponent);
 
     var chat = {} as IChat;
     chat.text = <string>this.modelForm.value.message;
